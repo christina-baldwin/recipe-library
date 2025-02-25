@@ -64,6 +64,10 @@ h1 {
   width: 100%;
 }
 
+.dropdown-items.dropdown-open {
+  display: block;
+}
+
 .dropdown-option {
   padding: 10px;
   cursor: pointer;
