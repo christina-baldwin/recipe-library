@@ -9,28 +9,38 @@
   <body>
     <h1>Recipe Library</h1>
 
-    <div class="filter diet-filter">
-      <h2>Filter by diet</h2>
-      <button data-filter="all">All</button>
-      <button data-filter="vegan">Vegan</button>
-      <button data-filter="gluten-free">Gluten-free</button>
-      <button data-filter="dairy-free">Dairy-free</button>
-    </div>
+    <div class="filters">
+      <div class="filter diet-filter">
+        <label>Filter by diet</label>
+        <select>
+          <option data-filter="all">All</option>
+          <option data-filter="vegan">Vegan</option>
+          <option data-filter="gluten-free">Gluten-free</option>
+          <option data-filter="dairy-free">Dairy-free</option>
+        </select>
+      </div>
 
-    <div class="filter cuisine-filter">
-      <h2>Filter by cuisine</h2>
-      <button data-filter="all">All</button>
-      <button data-filter="mediterranean">Mediterranean</button>
-      <button data-filter="middle-eastern">Middle Eastern</button>
-      <button data-filter="asian">Asian</button>
-      <button data-filter="italian">Italian</button>
-      <button data-filter="mexican">Mexican</button>
-    </div>
+      <div class="filter cuisine-filter">
+        <label>Filter by cuisine</label>
+        <select>
+          <option data-filter="all">All</option>
+          <option data-filter="mediterranean">Mediterranean</option>
+          <option data-filter="middle-eastern">Middle Eastern</option>
+          <option data-filter="asian">Asian</option>
+          <option data-filter="italian">Italian</option>
+          <option data-filter="mexican">Mexican</option>
+        </select>
+      </div>
 
-    <div class="sort cooking-time-sort">
-      <h2>Sort by cooking time</h2>
-      <button data-filter="ascending">Ascending</button>
-      <button data-filter="descending">Descending</button>
+      <div>
+        <label>Sort by</label>
+        <select>
+          <option>Cooking time ascending</option>
+          <option>Cooking time descending</option>
+          <option>Number of ingredients ascending</option>
+          <option>Number of ingredients descending</option>
+        </select>
+      </div>
     </div>
 
     <div class="recipes">
@@ -41,7 +51,7 @@
         <img
           src="https://images.pexels.com/photos/10167647/pexels-photo-10167647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         />
-        <h3>Koupepia</h3>
+        <h2>Koupepia</h2>
         <p><span>Cuisine:</span> Mediterranean</p>
         <p><span>Diet:</span> Vegan, Gluten-free, Dairy-free</p>
         <p><span>Time:</span> 60min</p>
