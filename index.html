@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Library</title>
+  </head>
+
+  <body>
+    <h1>Recipe Library</h1>
+
+    <div class="filter diet-filter">
+      <h2>Filter by diet</h2>
+      <button data-filter="all">All</button>
+      <button data-filter="vegan">Vegan</button>
+      <button data-filter="gluten-free">Gluten-free</button>
+      <button data-filter="dairy-free">Dairy-free</button>
+    </div>
+
+    <div class="filter cuisine-filter">
+      <h2>Filter by cuisine</h2>
+      <button data-filter="all">All</button>
+      <button data-filter="mediterranean">Mediterranean</button>
+      <button data-filter="middle-eastern">Middle Eastern</button>
+      <button data-filter="asian">Asian</button>
+      <button data-filter="italian">Italian</button>
+      <button data-filter="mexican">Mexican</button>
+    </div>
+
+    <div class="sort">
+      <label class="sort-label" for="sort">Sort by</label>
+      <select class="sort-select" id="sort">
+        <option>Cooking time ascending</option>
+        <option>Cooking time descending</option>
+        <option>Price per serving ascending</option>
+        <option>Price per serving descending</option>
+      </select>
+    </div>
+
+    <div class="recipes">
+      <div
+        class="recipe"
+        data-category="mediterranean vegan gluten-free dairy-free"
+      >
+        <img
+          src="https://images.pexels.com/photos/10167647/pexels-photo-10167647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        />
+        <h3>Dolmadakia</h3>
+        <p><span>Cuisine:</span> Greek</p>
+        <p><span>Time:</span> 60min</p>
+        <p>Ingredients:</p>
+        <ul class="ingredients">
+          <li class="ingredient">Vine leaves</li>
+          <li class="ingredient">Rice</li>
+          <li class="ingredient">Tomatoes</li>
+          <li class="ingredient">Garlic</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
