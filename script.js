@@ -1,3 +1,4 @@
+// DROPDOWN
 let dropdowns = document.querySelectorAll(".dropdown");
 console.log("🚀 ~ dropdowns:", dropdowns);
 
@@ -23,5 +24,29 @@ dropdowns.forEach((dropdown) => {
         dropdownItems.classList.remove("dropdown-open");
       }
     }
+  });
+});
+
+// UPDATED MESSAGE
+dropdowns.forEach((dropdown) => {
+  const dropdownOptions = dropdown.querySelectorAll(".dropdown-option");
+
+  const userMessage = document.querySelector(".user-message");
+
+  dropdownOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      if (option.textContent.includes("All")) {
+        userMessage.textContent = "You can see all our amazing recipes!";
+        console.log(option.textcontent);
+      } else if (option.textContent.includes("Vegan")) {
+        userMessage.textContent = "We have some great vegan options!";
+      } else if (option.textContent.includes("Gluten")) {
+        userMessage.textContent = "You can have great recipes without gluten!";
+      } else if (option.textContent.includes("Dairy")) {
+        userMessage.textContent = "Dairy isnt needed for a tasty meal!";
+      } else {
+        userMessage.textContent = "Oops that's not a diet option, try again!";
+      }
+    });
   });
 });
