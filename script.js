@@ -16,4 +16,12 @@ dropdowns.forEach((dropdown) => {
       dropdownItems.classList.remove("dropdown-open");
     });
   });
+
+  window.addEventListener("click", (event) => {
+    if (!event.target.matches(".dropdown-selected")) {
+      if (dropdownItems.classList.contains("dropdown-open")) {
+        dropdownItems.classList.remove("dropdown-open");
+      }
+    }
+  });
 });
