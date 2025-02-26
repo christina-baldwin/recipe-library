@@ -138,3 +138,13 @@ h1 {
   object-fit: cover;
   border-radius: 5px;
 }
+
+.ingredients-list {
+  list-style: none;
+}
+
+.recipe hr {
+  border: none;
+  height: 1px;
+  background-color: #000;
+}
