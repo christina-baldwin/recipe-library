@@ -6,12 +6,15 @@
 }
 
 html {
-  font-family: "League Spartan", sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
+  font-family: "League Spartan", sans-serif;
   background-color: #fafbff;
   padding: 2rem;
+  margin: 0 auto;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -20,6 +23,11 @@ h1 {
   font-weight: 700;
   margin-bottom: 4rem;
   text-align: center;
+}
+
+.section {
+  max-width: 1800px;
+  overflow-x: hidden;
 }
 
 /* FILTERS */
