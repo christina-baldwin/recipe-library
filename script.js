@@ -50,3 +50,23 @@ dropdowns.forEach((dropdown) => {
     });
   });
 });
+
+// DROPDOWN FILTER BY RECIPE TYPE
+const dropdownOptions = document.querySelectorAll(".dropdown-option");
+dropdownOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    const filter = option.getAttribute("data-filter");
+    const recipes = document.querySelectorAll(".recipe");
+
+    recipes.forEach((recipe) => {
+      if (
+        filter === "all" ||
+        recipe.getAttribute("data-category").includes(filter)
+      ) {
+        recipe.classList.remove("hide");
+      } else {
+        recipe.classList.add("hide");
+      }
+    });
+  });
+});
