@@ -1,11 +1,10 @@
-// Get all custom select elements
 let dropdowns = document.querySelectorAll(".dropdown");
 console.log("🚀 ~ dropdowns:", dropdowns);
 
 dropdowns.forEach((dropdown) => {
-  const dropdownSelected = document.querySelector(".dropdown-selected");
-  const dropdownItems = document.querySelector(".dropdown-items");
-  const dropdownOptions = document.querySelectorAll(".dropdown-option");
+  const dropdownSelected = dropdown.querySelector(".dropdown-selected");
+  const dropdownItems = dropdown.querySelector(".dropdown-items");
+  const dropdownOptions = dropdown.querySelectorAll(".dropdown-option");
 
   dropdownSelected.addEventListener("click", () => {
     dropdownItems.classList.toggle("dropdown-open");
