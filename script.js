@@ -53,16 +53,28 @@ dropdowns.forEach((dropdown) => {
 
 // DROPDOWN FILTER BY RECIPE TYPE
 const dropdownOptions = document.querySelectorAll(".dropdown-option");
+let dietFilterValue = "all";
+let cuisineFilterValue = "all";
+const recipes = document.querySelectorAll(".recipe");
+
 dropdownOptions.forEach((option) => {
   option.addEventListener("click", () => {
     const filter = option.getAttribute("data-filter");
-    const recipes = document.querySelectorAll(".recipe");
+
+    if (option.classList.contains("diet-option")) {
+      dietFilterValue = filter;
+    } else if (option.classList.contains("cuisine-option")) {
+      cuisineFilterValue = filter;
+    }
 
     recipes.forEach((recipe) => {
-      if (
-        filter === "all" ||
-        recipe.getAttribute("data-category").includes(filter)
-      ) {
+      const category = recipe.getAttribute("data-category");
+      const matchesDiet =
+        dietFilterValue === "all" || category.includes(dietFilterValue);
+      const matchesCuisine =
+        cuisineFilterValue === "all" || category.includes(cuisineFilterValue);
+
+      if (matchesDiet && matchesCuisine) {
         recipe.classList.remove("hide");
       } else {
         recipe.classList.add("hide");
