@@ -1,6 +1,12 @@
 // DROPDOWN
 let dropdowns = document.querySelectorAll(".dropdown");
-console.log("🚀 ~ dropdowns:", dropdowns);
+
+function closeAllDropdowns() {
+  dropdowns.forEach((dropdown) => {
+    const dropdownItems = dropdown.querySelector(".dropdown-items");
+    dropdownItems.classList.remove("dropdown-open");
+  });
+}
 
 dropdowns.forEach((dropdown) => {
   const dropdownSelected = dropdown.querySelector(".dropdown-selected");
@@ -8,7 +14,12 @@ dropdowns.forEach((dropdown) => {
   const dropdownOptions = dropdown.querySelectorAll(".dropdown-option");
 
   dropdownSelected.addEventListener("click", () => {
-    dropdownItems.classList.toggle("dropdown-open");
+    if (dropdownItems.classList.contains("dropdown-open")) {
+      dropdownItems.classList.remove("dropdown-open");
+    } else {
+      closeAllDropdowns();
+      dropdownItems.classList.add("dropdown-open");
+    }
   });
 
   dropdownOptions.forEach((option) => {
@@ -24,30 +35,6 @@ dropdowns.forEach((dropdown) => {
         dropdownItems.classList.remove("dropdown-open");
       }
     }
-  });
-});
-
-// UPDATED MESSAGE
-dropdowns.forEach((dropdown) => {
-  const dropdownOptions = dropdown.querySelectorAll(".dropdown-option");
-
-  const userMessage = document.querySelector(".user-message");
-
-  dropdownOptions.forEach((option) => {
-    option.addEventListener("click", () => {
-      if (option.textContent.includes("All")) {
-        userMessage.textContent = "You can see all our amazing recipes!";
-        console.log(option.textcontent);
-      } else if (option.textContent.includes("Vegan")) {
-        userMessage.textContent = "We have some great vegan options!";
-      } else if (option.textContent.includes("Gluten")) {
-        userMessage.textContent = "You can have great recipes without gluten!";
-      } else if (option.textContent.includes("Dairy")) {
-        userMessage.textContent = "Dairy isnt needed for a tasty meal!";
-      } else {
-        userMessage.textContent = "Oops that's not a diet option, try again!";
-      }
-    });
   });
 });
 
@@ -78,6 +65,30 @@ dropdownOptions.forEach((option) => {
         recipe.classList.remove("hide");
       } else {
         recipe.classList.add("hide");
+      }
+    });
+  });
+});
+
+// UPDATED MESSAGE
+dropdowns.forEach((dropdown) => {
+  const dropdownOptions = dropdown.querySelectorAll(".dropdown-option");
+
+  const userMessage = document.querySelector(".user-message");
+
+  dropdownOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      if (option.textContent.includes("All")) {
+        userMessage.textContent = "You can see all our amazing recipes!";
+        console.log(option.textcontent);
+      } else if (option.textContent.includes("Vegan")) {
+        userMessage.textContent = "We have some great vegan options!";
+      } else if (option.textContent.includes("Gluten")) {
+        userMessage.textContent = "You can have great recipes without gluten!";
+      } else if (option.textContent.includes("Dairy")) {
+        userMessage.textContent = "Dairy isnt needed for a tasty meal!";
+      } else {
+        userMessage.textContent = "Oops that's not a diet option, try again!";
       }
     });
   });
