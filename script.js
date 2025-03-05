@@ -3,7 +3,7 @@ const recipeData = [
   {
     id: 1,
     title: "Vegan Lentil Soup",
-    image: "./chicken.webp",
+    image: "https://images.pexels.com/photos/6120511/pexels-photo-6120511.jpeg",
     readyInMinutes: 30,
     servings: 4,
     sourceUrl: "https://example.com/vegan-lentil-soup",
@@ -27,7 +27,8 @@ const recipeData = [
   {
     id: 2,
     title: "Vegetarian Pesto Pasta",
-    image: "./chicken.webp",
+    image:
+      "https://images.pexels.com/photos/8105120/pexels-photo-8105120.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     readyInMinutes: 25,
     servings: 2,
     sourceUrl: "https://example.com/vegetarian-pesto-pasta",
@@ -49,7 +50,7 @@ const recipeData = [
   {
     id: 3,
     title: "Gluten-Free Chicken Stir-Fry",
-    image: "./chicken.webp",
+    image: "https://images.pexels.com/photos/262897/pexels-photo-262897.jpeg",
     readyInMinutes: 20,
     servings: 3,
     sourceUrl: "https://example.com/gluten-free-chicken-stir-fry",
@@ -75,7 +76,7 @@ const recipeData = [
   {
     id: 4,
     title: "Dairy-Free Tacos",
-    image: "./chicken.webp",
+    image: "https://images.pexels.com/photos/7613568/pexels-photo-7613568.jpeg",
     readyInMinutes: 15,
     servings: 2,
     sourceUrl: "https://example.com/dairy-free-tacos",
@@ -95,7 +96,8 @@ const recipeData = [
   {
     id: 5,
     title: "Middle Eastern Hummus",
-    image: "./chicken.webp",
+    image:
+      "https://images.pexels.com/photos/1618898/pexels-photo-1618898.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     readyInMinutes: 10,
     servings: 4,
     sourceUrl: "https://example.com/middle-eastern-hummus",
@@ -108,7 +110,8 @@ const recipeData = [
   {
     id: 6,
     title: "Quick Avocado Toast",
-    image: "./chicken.webp",
+    image:
+      "https://images.pexels.com/photos/1656685/pexels-photo-1656685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     readyInMinutes: 5,
     servings: 1,
     sourceUrl: "https://example.com/quick-avocado-toast",
@@ -121,7 +124,8 @@ const recipeData = [
   {
     id: 7,
     title: "Beef Stew",
-    image: "./chicken.webp",
+    image:
+      "https://images.pexels.com/photos/1618952/pexels-photo-1618952.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     readyInMinutes: 90,
     servings: 5,
     sourceUrl: "https://example.com/beef-stew",
