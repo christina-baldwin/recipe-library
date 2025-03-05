@@ -154,10 +154,13 @@ const recipeData = [
 const recipesContainer = document.querySelector(".recipes");
 const loadRecipeData = () => {
   recipeData.forEach((recipe) => {
+    const numberOfIngredients = recipe.ingredients.length;
     recipesContainer.innerHTML += `
     <div
           class="recipe"
-          data-category="mediterranean vegan gluten-free dairy-free 60"
+          data-category="${recipe.cuisine} ${recipe.diets.join(", ")} ${
+      recipe.readyInMinutes
+    } ${numberOfIngredients}"
         >
           <div class="img-container">
             <img
