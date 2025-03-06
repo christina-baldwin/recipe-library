@@ -247,9 +247,9 @@ dropdowns.forEach((dropdown) => {
 
 // DROPDOWN FILTER BY RECIPE TYPE
 const dropdownOptions = document.querySelectorAll(".dropdown-option");
+const recipes = document.querySelectorAll(".recipe");
 let dietFilterValue = "all";
 let cuisineFilterValue = "all";
-const recipes = document.querySelectorAll(".recipe");
 
 dropdownOptions.forEach((option) => {
   option.addEventListener("click", () => {
@@ -261,21 +261,51 @@ dropdownOptions.forEach((option) => {
       cuisineFilterValue = filter;
     }
 
-    recipes.forEach((recipe) => {
+    const filteredRecipes = Array.from(recipes).filter((recipe) => {
       const category = recipe.getAttribute("data-category");
       const matchesDiet =
         dietFilterValue === "all" || category.includes(dietFilterValue);
       const matchesCuisine =
         cuisineFilterValue === "all" || category.includes(cuisineFilterValue);
 
-      if (matchesDiet && matchesCuisine) {
-        recipe.classList.remove("hide");
-      } else {
-        recipe.classList.add("hide");
-      }
+      return matchesCuisine && matchesDiet;
+    });
+
+    recipes.forEach((recipe) => {
+      recipe.classList.add("hide");
+    });
+
+    filteredRecipes.forEach((recipe) => {
+      recipe.classList.remove("hide");
     });
   });
 });
+
+// dropdownOptions.forEach((option) => {
+//   option.addEventListener("click", () => {
+//     const filter = option.getAttribute("data-filter");
+
+//     if (option.classList.contains("diet-option")) {
+//       dietFilterValue = filter;
+//     } else if (option.classList.contains("cuisine-option")) {
+//       cuisineFilterValue = filter;
+//     }
+
+//     recipes.forEach((recipe) => {
+//       const category = recipe.getAttribute("data-category");
+//       const matchesDiet =
+//         dietFilterValue === "all" || category.includes(dietFilterValue);
+//       const matchesCuisine =
+//         cuisineFilterValue === "all" || category.includes(cuisineFilterValue);
+
+//       if (matchesDiet && matchesCuisine) {
+//         recipe.classList.remove("hide");
+//       } else {
+//         recipe.classList.add("hide");
+//       }
+//     });
+//   });
+// });
 
 // UPDATED MESSAGE
 dropdowns.forEach((dropdown) => {
