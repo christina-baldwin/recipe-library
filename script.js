@@ -219,6 +219,7 @@ const loadRecipeData = (recipesArray) => {
 loadRecipeData(recipeData);
 
 // DROPDOWN
+// TODO make filter dropdowns dynamic by making the available options based on data found in recipeData (diet and cuisine) instead of hard-coded
 let dropdowns = document.querySelectorAll(".dropdown");
 
 function closeAllDropdowns() {
