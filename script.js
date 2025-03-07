@@ -159,51 +159,57 @@ const recipeData = [
 const recipesContainer = document.querySelector(".recipes");
 const loadRecipeData = (recipesArray) => {
   recipesContainer.innerHTML = "";
-  recipesArray.forEach((recipe) => {
-    const numberOfIngredients = recipe.ingredients.length;
+  if (recipesArray.length > 0) {
+    recipesArray.forEach((recipe) => {
+      const numberOfIngredients = recipe.ingredients.length;
+      recipesContainer.innerHTML += `
+       <div
+             class="recipe"
+             data-category="${recipe.cuisine} ${recipe.diets.join(", ")} ${
+        recipe.readyInMinutes
+      } ${numberOfIngredients}"
+           >
+             <div class="img-container">
+               <img
+                 class="recipe-img"
+                 src=${recipe.image}
+               />
+             </div>
+             <h2 class="recipe-title">${recipe.title}</h2>
+             <hr />
+             <div class="recipe-text-container">
+               <h3 class="recipe-subtitle">Cuisine:</h3>
+               <p class="recipe-text">${recipe.cuisine}</p>
+             </div>
+   
+             <div class="recipe-text-container">
+               <h3 class="recipe-subtitle">Diet:</h3>
+               <p class="recipe-text">${recipe.diets.join(", ")}</p>
+             </div>
+   
+             <div class="recipe-text-container">
+               <h3 class="recipe-subtitle">Time:</h3>
+               <p class="recipe-text">${recipe.readyInMinutes}min</p>
+             </div>
+             <hr />
+   
+             <div class="recipe-text-container ingredients-container">
+               <h3 class="recipe-subtitle">Ingredients:</h3>
+               <ul class="ingredients-list">
+               ${recipe.ingredients
+                 .map((ingredient) => {
+                   return `<li class="ingredient">${ingredient}</li>`;
+                 })
+                 .join("")}
+               </ul>
+             </div>
+           </div>`;
+    });
+  } else {
     recipesContainer.innerHTML += `
-    <div
-          class="recipe"
-          data-category="${recipe.cuisine} ${recipe.diets.join(", ")} ${
-      recipe.readyInMinutes
-    } ${numberOfIngredients}"
-        >
-          <div class="img-container">
-            <img
-              class="recipe-img"
-              src=${recipe.image}
-            />
-          </div>
-          <h2 class="recipe-title">${recipe.title}</h2>
-          <hr />
-          <div class="recipe-text-container">
-            <h3 class="recipe-subtitle">Cuisine:</h3>
-            <p class="recipe-text">${recipe.cuisine}</p>
-          </div>
-
-          <div class="recipe-text-container">
-            <h3 class="recipe-subtitle">Diet:</h3>
-            <p class="recipe-text">${recipe.diets.join(", ")}</p>
-          </div>
-
-          <div class="recipe-text-container">
-            <h3 class="recipe-subtitle">Time:</h3>
-            <p class="recipe-text">${recipe.readyInMinutes}min</p>
-          </div>
-          <hr />
-
-          <div class="recipe-text-container ingredients-container">
-            <h3 class="recipe-subtitle">Ingredients:</h3>
-            <ul class="ingredients-list">
-            ${recipe.ingredients
-              .map((ingredient) => {
-                return `<li class="ingredient">${ingredient}</li>`;
-              })
-              .join("")}
-            </ul>
-          </div>
-        </div>`;
-  });
+    <div>There are no recipes to display.</div>
+    `;
+  }
 };
 loadRecipeData(recipeData);
 
