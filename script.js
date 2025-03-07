@@ -183,7 +183,11 @@ const loadRecipeData = (recipesArray) => {
    
              <div class="recipe-text-container">
                <h3 class="recipe-subtitle">Diet:</h3>
-               <p class="recipe-text">${recipe.diets.join(", ")}</p>
+               <p class="recipe-text">${recipe.diets
+                 .map((diet) => {
+                   return diet.charAt(0).toUpperCase() + diet.slice(1);
+                 })
+                 .join(", ")}</p>
              </div>
    
              <div class="recipe-text-container">
