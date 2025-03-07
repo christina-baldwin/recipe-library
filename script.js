@@ -268,7 +268,8 @@ let sortByValue;
 
 const filterRecipes = () => {
   let filteredRecipes = recipeData.filter((recipe) => {
-    const category = recipe.cuisine + ", " + recipe.diets.join(", ");
+    const category =
+      recipe.cuisine.toLowerCase() + ", " + recipe.diets.join(", ");
     const matchesDiet =
       dietFilterValue === "all" || category.includes(dietFilterValue);
     const matchesCuisine =
