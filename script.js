@@ -155,7 +155,6 @@ const recipeData = [
 ];
 
 // DISPLAY RECIPE DATA
-// TODO need to add text when there are no recipes
 const recipesContainer = document.querySelector(".recipes");
 const loadRecipeData = (recipesArray) => {
   recipesContainer.innerHTML = "";
