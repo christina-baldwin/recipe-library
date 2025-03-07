@@ -201,7 +201,9 @@ const loadRecipeData = (recipesArray) => {
                <ul class="ingredients-list">
                ${recipe.ingredients
                  .map((ingredient) => {
-                   return `<li class="ingredient">${ingredient}</li>`;
+                   return `<li class="ingredient">${
+                     ingredient.charAt(0).toUpperCase() + ingredient.slice(1)
+                   }</li>`;
                  })
                  .join("")}
                </ul>
