@@ -155,9 +155,11 @@ const recipeData = [
 ];
 
 // DISPLAY RECIPE DATA
+// TODO need to add text when there are no recipes
 const recipesContainer = document.querySelector(".recipes");
-const loadRecipeData = () => {
-  recipeData.forEach((recipe) => {
+const loadRecipeData = (recipesArray) => {
+  recipesContainer.innerHTML = "";
+  recipesArray.forEach((recipe) => {
     const numberOfIngredients = recipe.ingredients.length;
     recipesContainer.innerHTML += `
     <div
@@ -203,7 +205,7 @@ const loadRecipeData = () => {
         </div>`;
   });
 };
-loadRecipeData();
+loadRecipeData(recipeData);
 
 // DROPDOWN
 let dropdowns = document.querySelectorAll(".dropdown");
@@ -245,13 +247,39 @@ dropdowns.forEach((dropdown) => {
   });
 });
 
-// DROPDOWN FILTER BY RECIPE TYPE
-const dropdownOptions = document.querySelectorAll(".dropdown-option");
+// DROPDOWN FILTER AND SORT
+const filterOptions = document.querySelectorAll(".dropdown-option[data-filter");
+const sortByOptions = document.querySelectorAll(".dropdown-option[data-sort]");
 const recipes = document.querySelectorAll(".recipe");
 let dietFilterValue = "all";
 let cuisineFilterValue = "all";
+let sortByValue;
 
-dropdownOptions.forEach((option) => {
+const filterRecipes = () => {
+  let filteredRecipes = recipeData.filter((recipe) => {
+    const category = recipe.cuisine + ", " + recipe.diets.join(", ");
+    const matchesDiet =
+      dietFilterValue === "all" || category.includes(dietFilterValue);
+    const matchesCuisine =
+      cuisineFilterValue === "all" || category.includes(cuisineFilterValue);
+
+    return matchesCuisine && matchesDiet;
+  });
+
+  if (sortByValue === "cook-time-asc") {
+    filteredRecipes.sort((a, b) => a.readyInMinutes - b.readyInMinutes);
+  } else if (sortByValue === "cook-time-desc") {
+    filteredRecipes.sort((a, b) => b.readyInMinutes - a.readyInMinutes);
+  } else if (sortByValue === "ingredients-asc") {
+    filteredRecipes.sort((a, b) => a.ingredients.length - b.ingredients.length);
+  } else if (sortByValue === "ingredients-desc") {
+    filteredRecipes.sort((a, b) => b.ingredients.length - a.ingredients.length);
+  }
+
+  loadRecipeData(filteredRecipes);
+};
+
+filterOptions.forEach((option) => {
   option.addEventListener("click", () => {
     const filter = option.getAttribute("data-filter");
 
@@ -261,26 +289,79 @@ dropdownOptions.forEach((option) => {
       cuisineFilterValue = filter;
     }
 
-    const filteredRecipes = Array.from(recipes).filter((recipe) => {
-      const category = recipe.getAttribute("data-category");
-      const matchesDiet =
-        dietFilterValue === "all" || category.includes(dietFilterValue);
-      const matchesCuisine =
-        cuisineFilterValue === "all" || category.includes(cuisineFilterValue);
-
-      return matchesCuisine && matchesDiet;
-    });
-
-    recipes.forEach((recipe) => {
-      recipe.classList.add("hide");
-    });
-
-    filteredRecipes.forEach((recipe) => {
-      recipe.classList.remove("hide");
-    });
+    filterRecipes();
   });
 });
 
+sortByOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    sortByValue = option.getAttribute("data-sort");
+
+    filterRecipes();
+  });
+});
+
+// ///////////////////////////////////////////
+// OLD CODE: DELETE LATER
+// //////////////////////////////////////////
+// FILTER
+// filterOptions.forEach((option) => {
+//   option.addEventListener("click", () => {
+//     const filter = option.getAttribute("data-filter");
+
+//     if (option.classList.contains("diet-option")) {
+//       dietFilterValue = filter;
+//     } else if (option.classList.contains("cuisine-option")) {
+//       cuisineFilterValue = filter;
+//     }
+
+//     const filteredRecipes = Array.from(recipes).filter((recipe) => {
+//       const category = recipe.getAttribute("data-category");
+//       const matchesDiet =
+//         dietFilterValue === "all" || category.includes(dietFilterValue);
+//       const matchesCuisine =
+//         cuisineFilterValue === "all" || category.includes(cuisineFilterValue);
+
+//       return matchesCuisine && matchesDiet;
+//     });
+
+//     console.log(filteredRecipes);
+
+//     recipes.forEach((recipe) => {
+//       recipe.classList.add("hide");
+//     });
+
+//     filteredRecipes.forEach((recipe) => {
+//       recipe.classList.remove("hide");
+//     });
+//   });
+// });
+
+// SORT BY FILTER
+// const sortByOptions = document.querySelectorAll(".dropdown-option[data-sort]");
+// sortByOptions.forEach((option) => {
+//   option.addEventListener("click", () => {
+//     const sortBy = option.getAttribute("data-sort");
+
+//     let sortedRecipes = [...recipeData];
+
+//     if (sortBy === "cook-time-asc") {
+//       sortedRecipes.sort((a, b) => a.readyInMinutes - b.readyInMinutes);
+//     } else if (sortBy === "cook-time-desc") {
+//       sortedRecipes.sort((a, b) => b.readyInMinutes - a.readyInMinutes);
+//     } else if (sortBy === "ingredients-asc") {
+//       sortedRecipes.sort((a, b) => a.ingredients.length - b.ingredients.length);
+//     } else if (sortBy === "ingredients-desc") {
+//       sortedRecipes.sort((a, b) => b.ingredients.length - a.ingredients.length);
+//     }
+
+//     console.log(sortedRecipes);
+
+//     loadRecipeData(sortedRecipes);
+//   });
+// });
+
+// OLD OLD VERSION OF THE FILTER LOGIC
 // dropdownOptions.forEach((option) => {
 //   option.addEventListener("click", () => {
 //     const filter = option.getAttribute("data-filter");
@@ -306,27 +387,3 @@ dropdownOptions.forEach((option) => {
 //     });
 //   });
 // });
-
-// UPDATED MESSAGE
-dropdowns.forEach((dropdown) => {
-  const dropdownOptions = dropdown.querySelectorAll(".dropdown-option");
-
-  const userMessage = document.querySelector(".user-message");
-
-  dropdownOptions.forEach((option) => {
-    option.addEventListener("click", () => {
-      if (option.textContent.includes("All")) {
-        userMessage.textContent = "You can see all our amazing recipes!";
-        console.log(option.textcontent);
-      } else if (option.textContent.includes("Vegan")) {
-        userMessage.textContent = "We have some great vegan options!";
-      } else if (option.textContent.includes("Gluten")) {
-        userMessage.textContent = "You can have great recipes without gluten!";
-      } else if (option.textContent.includes("Dairy")) {
-        userMessage.textContent = "Dairy isnt needed for a tasty meal!";
-      } else {
-        userMessage.textContent = "Oops that's not a diet option, try again!";
-      }
-    });
-  });
-});

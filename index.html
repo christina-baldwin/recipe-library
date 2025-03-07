@@ -84,23 +84,30 @@
               Select an option
             </div>
             <div class="dropdown-items sort">
-              <div class="dropdown-option sort">Cooking time &uarr;</div>
-              <div class="dropdown-option sort">Cooking time &darr;</div>
-              <div class="dropdown-option sort">Ingredient number &uarr;</div>
-              <div class="dropdown-option sort">Ingredient number &darr;</div>
+              <div class="dropdown-option time-sort" data-sort="cook-time-asc">
+                Cooking time &uarr;
+              </div>
+              <div class="dropdown-option time-sort" data-sort="cook-time-desc">
+                Cooking time &darr;
+              </div>
+              <div
+                class="dropdown-option ingredients-sort"
+                data-sort="ingredients-asc"
+              >
+                Ingredient number &uarr;
+              </div>
+              <div
+                class="dropdown-option ingredients-sort"
+                data-sort="ingredients-desc"
+              >
+                Ingredient number &darr;
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="recipes">
-        <div>
-          <h2 class="recipe-title">
-            What your choice of diet says about your meal:
-          </h2>
-          <div class="user-message">Select an option to update me!</div>
-        </div>
-      </div>
+      <div class="recipes"></div>
     </section>
   </body>
   <script src="script.js"></script>
