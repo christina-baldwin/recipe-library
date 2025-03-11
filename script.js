@@ -2,23 +2,33 @@
 const apiKey = "a4a3ccd716344f26b393d88964bbac7e";
 const URL = `https://api.spoonacular.com/recipes/random?number=7&apiKey=${apiKey}`;
 let recipeData = [];
+
 const fetchRecipeData = async () => {
-  try {
-    const response = await fetch(URL);
-    if (!response.ok) {
-      if (response.status === 429) {
-        throw new Error("API limit reached. Please try again later");
-      }
-      throw new Error(`Error: ${response.status} ${response.statusText}`);
-    }
-    const data = await response.json();
-    recipeData = data.recipes;
+  const cachedRecipeData = localStorage.getItem("recipes");
+
+  if (cachedRecipeData && cachedRecipeData !== "[]") {
+    recipeData = JSON.parse(cachedRecipeData);
     loadRecipeData(recipeData);
-    console.log(recipeData);
-  } catch (error) {
-    recipesContainer.innerHTML = `<div>${error.message}</div>`;
+  } else {
+    try {
+      const response = await fetch(URL);
+      if (!response.ok) {
+        if (response.status === 429) {
+          throw new Error("API limit reached. Please try again later");
+        }
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+      const data = await response.json();
+      recipeData = data.recipes;
+      localStorage.setItem("recipes", JSON.stringify(recipeData));
+      loadRecipeData(recipeData);
+      console.log(recipeData);
+    } catch (error) {
+      recipesContainer.innerHTML = `<div>${error.message}</div>`;
+    }
   }
 };
+
 document.addEventListener("DOMContentLoaded", fetchRecipeData);
 
 // DISPLAY RECIPE DATA
