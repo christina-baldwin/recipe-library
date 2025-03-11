@@ -33,9 +33,15 @@ document.addEventListener("DOMContentLoaded", fetchRecipeData);
 
 // DISPLAY RECIPE DATA
 const recipesContainer = document.querySelector(".recipes");
+let isLoading = true;
+
 const loadRecipeData = (recipesArray) => {
   recipesContainer.innerHTML = "";
-  if (recipesArray.length > 0) {
+  if (isLoading) {
+    recipesContainer.innerHTML = `<div>Loading...</div>`;
+  }
+
+  if (recipesArray.length) {
     recipesArray.forEach((recipe) => {
       const numberOfIngredients = recipe.extendedIngredients.length;
       recipesContainer.innerHTML += `
@@ -97,6 +103,8 @@ const loadRecipeData = (recipesArray) => {
     <div>There are no recipes to display.</div>
     `;
   }
+
+  isLoading = false;
 };
 loadRecipeData(recipeData);
 
