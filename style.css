@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 html {
@@ -27,6 +28,26 @@ h1 {
 .section {
   max-width: 1800px;
   padding: 2rem;
+}
+
+/* BUTTONS */
+.btn {
+  border: none;
+  background-color: #0018a4;
+  color: #fafbff;
+  font-size: 1rem;
+
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  border: solid 2px #0018a4;
+  cursor: pointer;
+  transition: all ease 0.3s;
+  margin-bottom: 3rem;
+}
+
+.btn:hover {
+  background-color: #ccffe2;
+  color: #0018a4;
 }
 
 /* FILTERS */

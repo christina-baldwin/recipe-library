@@ -90,6 +90,18 @@ const loadRecipeData = (recipesArray) => {
 };
 loadRecipeData(recipeData);
 
+// RANDOM RECIPE
+const randomRecipeBtn = document.querySelector(".recipe-btn");
+const getRandomRecipe = () => {
+  randomRecipeBtn.addEventListener("click", () => {
+    const randomRecipe = [
+      recipeData[Math.floor(Math.random() * recipeData.length)],
+    ];
+    loadRecipeData(randomRecipe);
+  });
+};
+getRandomRecipe();
+
 // DROPDOWN
 // TODO make filter dropdowns dynamic by making the available options based on data found in recipeData (diet and cuisine) instead of hard-coded
 let dropdowns = document.querySelectorAll(".dropdown");
