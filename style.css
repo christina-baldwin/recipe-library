@@ -31,22 +31,43 @@ h1 {
 }
 
 /* BUTTONS */
+.btns {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
 .btn {
   border: none;
   background-color: #0018a4;
   color: #fafbff;
   font-size: 1rem;
-
   padding: 0.5rem 1rem;
   border-radius: 50px;
   border: solid 2px #0018a4;
   cursor: pointer;
   transition: all ease 0.3s;
-  margin-bottom: 3rem;
 }
 
 .btn:hover {
   background-color: #ccffe2;
+  color: #0018a4;
+}
+
+.fav-btn,
+.like-btn {
+  background-color: #ff6589;
+  border-color: #ff6589;
+}
+
+.fav-btn:hover,
+.like-btn:hover {
+  background-color: #ffecea;
+  color: #0018a4;
+}
+
+.like-btn.clicked {
+  background-color: #ffecea;
   color: #0018a4;
 }
 

@@ -96,6 +96,7 @@ const loadRecipeData = (recipesArray) => {
                  .join("")}
                </ul>
              </div>
+             <button class="btn like-btn">	&#10084;</button>
            </div>`;
     });
   } else {
