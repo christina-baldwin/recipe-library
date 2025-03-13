@@ -1,6 +1,6 @@
 // RECIPE DATA
 const apiKey = "a4a3ccd716344f26b393d88964bbac7e";
-const URL = `https://api.spoonacular.com/recipes/random?number=7&apiKey=${apiKey}`;
+const URL = `https://api.spoonacular.com/recipes/random?number=10&apiKey=${apiKey}`;
 let recipeData = [];
 
 const fetchRecipeData = async () => {
@@ -197,7 +197,6 @@ const getRandomRecipe = () => {
 getRandomRecipe();
 
 // DROPDOWN
-// TODO make filter dropdowns dynamic by making the available options based on data found in recipeData (diet and cuisine) instead of hard-coded
 let dropdowns = document.querySelectorAll(".dropdown");
 
 function closeAllDropdowns() {
