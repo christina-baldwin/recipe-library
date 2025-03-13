@@ -155,7 +155,7 @@ const manageLikedRecipes = () => {
 };
 document.addEventListener("DOMContentLoaded", manageLikedRecipes);
 
-// SHOWING/TOGGLING FAVOURITE RECIPES
+// SHOWING FAVOURITE RECIPES
 let viewingFavRecipes = false;
 const favRecipesButton = document.querySelector(".fav-btn");
 
@@ -163,7 +163,7 @@ const toggleFavRecipes = () => {
   viewingFavRecipes = !viewingFavRecipes;
 
   if (viewingFavRecipes) {
-    favRecipesButton.textContent = "View All";
+    favRecipesButton.textContent = "View All Recipes";
     showLikedRecipes();
   } else {
     favRecipesButton.textContent = "View Favourites";
