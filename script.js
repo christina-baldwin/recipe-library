@@ -124,7 +124,7 @@ const updateLikedRecipes = () => {
   );
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+const manageLikedRecipes = () => {
   const likeButtons = document.querySelectorAll(".like-btn");
 
   likeButtons.forEach((btn) => {
@@ -132,6 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (likedRecipes.has(recipeId)) {
       btn.classList.add("liked");
+    } else {
+      btn.classList.remove("liked");
     }
   });
 
@@ -148,12 +150,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       updateLikedRecipes();
+      showLikedRecipes();
     });
   });
-});
+};
+document.addEventListener("DOMContentLoaded", manageLikedRecipes);
 
 // SHOWING FAVOURITE RECIPES
 const favRecipesButton = document.querySelector(".fav-btn");
+
+const showLikedRecipes = () => {
+  const likedRecipeData = recipeData.filter((recipe) =>
+    likedRecipes.has(String(recipe.id))
+  );
+
+  loadRecipeData(likedRecipeData);
+  manageLikedRecipes();
+};
+
+favRecipesButton.addEventListener("click", showLikedRecipes);
 
 // RANDOM RECIPE
 const randomRecipeBtn = document.querySelector(".recipe-btn");
