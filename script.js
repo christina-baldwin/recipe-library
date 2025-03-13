@@ -115,9 +115,7 @@ if (!localStorage.getItem("likedRecipes")) {
   localStorage.setItem("likedRecipes", JSON.stringify([]));
 }
 
-let likedRecipes = new Set(
-  JSON.parse(localStorage.getItem("likedRecipes")) || []
-);
+let likedRecipes = new Set(JSON.parse(localStorage.getItem("likedRecipes")));
 
 const updateLikedRecipes = () => {
   localStorage.setItem(
@@ -128,6 +126,14 @@ const updateLikedRecipes = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const likeButtons = document.querySelectorAll(".like-btn");
+
+  likeButtons.forEach((btn) => {
+    const recipeId = btn.closest(".recipe").dataset.id;
+
+    if (likedRecipes.has(recipeId)) {
+      btn.classList.add("liked");
+    }
+  });
 
   likeButtons.forEach((btn) => {
     btn.addEventListener("click", (event) => {
@@ -146,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// SHOWING FAVOURITE RECIPES
 const favRecipesButton = document.querySelector(".fav-btn");
 
 // RANDOM RECIPE
