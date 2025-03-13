@@ -155,8 +155,22 @@ const manageLikedRecipes = () => {
 };
 document.addEventListener("DOMContentLoaded", manageLikedRecipes);
 
-// SHOWING FAVOURITE RECIPES
+// SHOWING/TOGGLING FAVOURITE RECIPES
+let viewingFavRecipes = false;
 const favRecipesButton = document.querySelector(".fav-btn");
+
+const toggleFavRecipes = () => {
+  viewingFavRecipes = !viewingFavRecipes;
+
+  if (viewingFavRecipes) {
+    favRecipesButton.textContent = "View All";
+    showLikedRecipes();
+  } else {
+    favRecipesButton.textContent = "View Favourites";
+    loadRecipeData(recipeData);
+    manageLikedRecipes();
+  }
+};
 
 const showLikedRecipes = () => {
   const likedRecipeData = recipeData.filter((recipe) =>
@@ -167,7 +181,7 @@ const showLikedRecipes = () => {
   manageLikedRecipes();
 };
 
-favRecipesButton.addEventListener("click", showLikedRecipes);
+favRecipesButton.addEventListener("click", toggleFavRecipes);
 
 // RANDOM RECIPE
 const randomRecipeBtn = document.querySelector(".recipe-btn");
