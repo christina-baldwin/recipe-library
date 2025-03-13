@@ -22,7 +22,6 @@ const fetchRecipeData = async () => {
       recipeData = data.recipes;
       localStorage.setItem("recipes", JSON.stringify(recipeData));
       loadRecipeData(recipeData);
-      console.log(recipeData);
     } catch (error) {
       recipesContainer.innerHTML = `<div>${error.message}</div>`;
     }
@@ -44,12 +43,21 @@ const loadRecipeData = (recipesArray) => {
   if (recipesArray.length) {
     recipesArray.forEach((recipe) => {
       const numberOfIngredients = recipe.extendedIngredients.length;
+
+      const diets = [];
+      if (recipe.vegan) diets.push("Vegan");
+      if (recipe.vegetarian) diets.push("Vegetarian");
+      if (recipe.glutenFree) diets.push("Gluten-free");
+      if (recipe.dairyFree) diets.push("Dairy-free");
+
+      const dietInfo = diets.length ? diets.join(", ") : "No specific diet";
+
       recipesContainer.innerHTML += `
        <div
              class="recipe"
-             data-category="${recipe.cuisines.join(", ")} ${recipe.diets.join(
-        ", "
-      )} ${recipe.readyInMinutes} ${numberOfIngredients}"
+             data-category="${recipe.cuisines.join(", ")} ${diets.join(", ")} ${
+        recipe.readyInMinutes
+      } ${numberOfIngredients}"
       data-id=${recipe.id}
            >
              <div class="img-container">
@@ -71,11 +79,7 @@ const loadRecipeData = (recipesArray) => {
    
              <div class="recipe-text-container">
                <h3 class="recipe-subtitle">Diet:</h3>
-               <p class="recipe-text">${recipe.diets
-                 .map((diet) => {
-                   return diet.charAt(0).toUpperCase() + diet.slice(1);
-                 })
-                 .join(", ")}</p>
+               <p class="recipe-text">${dietInfo}</p>
              </div>
    
              <div class="recipe-text-container">
