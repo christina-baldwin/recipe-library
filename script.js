@@ -150,7 +150,6 @@ const manageLikedRecipes = () => {
       }
 
       updateLikedRecipes();
-      showLikedRecipes();
     });
   });
 };
@@ -178,6 +177,7 @@ const getRandomRecipe = () => {
       recipeData[Math.floor(Math.random() * recipeData.length)],
     ];
     loadRecipeData(randomRecipe);
+    manageLikedRecipes();
   });
 };
 getRandomRecipe();
