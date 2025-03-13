@@ -50,6 +50,7 @@ const loadRecipeData = (recipesArray) => {
              data-category="${recipe.cuisines.join(", ")} ${recipe.diets.join(
         ", "
       )} ${recipe.readyInMinutes} ${numberOfIngredients}"
+      data-id=${recipe.id}
            >
              <div class="img-container">
                <img
@@ -108,6 +109,44 @@ const loadRecipeData = (recipesArray) => {
   isLoading = false;
 };
 loadRecipeData(recipeData);
+
+// LIKED RECIPES
+if (!localStorage.getItem("likedRecipes")) {
+  localStorage.setItem("likedRecipes", JSON.stringify([]));
+}
+
+let likedRecipes = new Set(
+  JSON.parse(localStorage.getItem("likedRecipes")) || []
+);
+
+const updateLikedRecipes = () => {
+  localStorage.setItem(
+    "likedRecipes",
+    JSON.stringify(Array.from(likedRecipes))
+  );
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const likeButtons = document.querySelectorAll(".like-btn");
+
+  likeButtons.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      const recipeId = event.target.closest(".recipe").dataset.id;
+
+      if (likedRecipes.has(recipeId)) {
+        likedRecipes.delete(recipeId);
+        event.target.classList.remove("liked");
+      } else {
+        likedRecipes.add(recipeId);
+        event.target.classList.add("liked");
+      }
+
+      updateLikedRecipes();
+    });
+  });
+});
+
+const favRecipesButton = document.querySelector(".fav-btn");
 
 // RANDOM RECIPE
 const randomRecipeBtn = document.querySelector(".recipe-btn");
