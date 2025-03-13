@@ -272,6 +272,7 @@ const filterRecipes = () => {
   }
 
   loadRecipeData(filteredRecipes);
+  manageLikedRecipes();
 };
 
 filterOptions.forEach((option) => {
