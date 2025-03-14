@@ -162,6 +162,7 @@ document.addEventListener("DOMContentLoaded", manageLikedRecipes);
 // SHOWING FAVOURITE RECIPES
 let viewingFavRecipes = false;
 const favRecipesButton = document.querySelector(".fav-btn");
+let likedRecipeData = [];
 
 const toggleFavRecipes = () => {
   viewingFavRecipes = !viewingFavRecipes;
@@ -177,7 +178,7 @@ const toggleFavRecipes = () => {
 };
 
 const showLikedRecipes = () => {
-  const likedRecipeData = recipeData.filter((recipe) =>
+  likedRecipeData = recipeData.filter((recipe) =>
     likedRecipes.has(String(recipe.id))
   );
 
@@ -249,7 +250,9 @@ let cuisineFilterValue = "all";
 let sortByValue;
 
 const filterRecipes = () => {
-  let filteredRecipes = recipeData.filter((recipe) => {
+  let recipesToFilter = viewingFavRecipes ? likedRecipeData : recipeData;
+
+  let filteredRecipes = recipesToFilter.filter((recipe) => {
     const category =
       recipe.cuisines.join(", ").toLowerCase() + ", " + recipe.diets.join(", ");
     const matchesDiet =
