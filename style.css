@@ -33,8 +33,10 @@ h1 {
 /* BUTTONS */
 .btns {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
   margin-bottom: 3rem;
+  padding: 2rem;
 }
 
 .btn {
